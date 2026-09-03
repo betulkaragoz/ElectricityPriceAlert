@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="PriceConsole/PriceConsole.csproj" />
+  <Project Path="PriceEngine.Tests/PriceEngine.Tests.csproj" />
+  <Project Path="PriceEngine/PriceEngine.csproj" />
+</Solution>
