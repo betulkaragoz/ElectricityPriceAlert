@@ -15,7 +15,7 @@ public class StreakRule : RuleDefinition
         // 3 streak için 4 saat verisi lazım
         int requiredPoints = Hours + 1;
 
-        // yeterli saat verimiz yoksa başlarda vs false dön (toplam 4 adet)
+        // yeterli saat verimiz yoksa başlarda vs false dön (toplam 4 adet olması lazım en başta)
         if (context.History.Count < requiredPoints)
         {
             return false;
@@ -41,18 +41,18 @@ public class CooldownRule : RuleDefinition
     public int Hours { get; set; }
 
     [JsonPropertyName("rule")]
-    public RuleDefinition? Rule { get; set; }
+    public RuleDefinition? Rule { get; set; } // iç kural 
 
     public override bool Evaluate(EngineContext context)
     {
-        if (Rule == null) return false;
+        if (Rule == null) return false; // iç kural null ise false 
         
-        if (!Rule.Evaluate(context)) return false;
+        if (!Rule.Evaluate(context)) return false; // iç kural false ise false dön
 
-        if (context.LastFiredTimes.TryGetValue(this, out var lastFired))
+        if (context.LastFiredTimes.TryGetValue(this, out var lastFired)) // daha önce bu kural çalıştırılmış mı kontrol et, çalmışsa lastFired değişkenine atar
         {
-            var hoursSince = (context.Current.Timestamp - lastFired).TotalHours;
-            if (hoursSince < Hours)
+            var hoursSince = (context.Current.Timestamp - lastFired).TotalHours; // geçen süreyi hesapla
+            if (hoursSince < Hours) 
                 return false;
                 
         }

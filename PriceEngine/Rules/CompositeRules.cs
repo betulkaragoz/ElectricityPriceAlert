@@ -11,7 +11,7 @@ public class AndRule : RuleDefinition
     {
         if (Rules.Count == 0) return false;
         foreach (var rule in Rules) {
-            if (!rule.Evaluate(context)) return false;
+            if (!rule.Evaluate(context)) return false; // 1 kural bile eşleşmezse false döndürür döngü biter
         }
         return true;
     }
@@ -26,7 +26,7 @@ public class OrRule : RuleDefinition
         if (Rules.Count == 0) return false;
         foreach (var rule in Rules)
         {
-            if (rule.Evaluate(context)) return true;
+            if (rule.Evaluate(context)) return true; // 1 kurak bile eşleşirse true döndürür
         }
         return false;
     }
@@ -38,6 +38,6 @@ public class NotRule : RuleDefinition
     public RuleDefinition? Rule { get; set; } = null!;
     public override bool Evaluate(EngineContext context)
     {
-        return !Rule!.Evaluate(context);
+        return !Rule!.Evaluate(context); // kuralın sonucunu tersine çevirir t=>f f=>t
     }
 }

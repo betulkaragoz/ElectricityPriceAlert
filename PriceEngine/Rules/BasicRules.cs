@@ -49,6 +49,6 @@ public class RangeRule : RuleDefinition
     
     public override bool Evaluate(EngineContext context)
     {
-        return context.Current.Price < Min && context.Current.Price > Max;
+        return context.Current.Price < Min || context.Current.Price > Max;
     }
 }

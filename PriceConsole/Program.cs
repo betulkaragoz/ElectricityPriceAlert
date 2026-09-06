@@ -20,10 +20,10 @@ if ( !File.Exists(pricesPath) || !File.Exists(rulesPath) )
 try
 {
     var options = new JsonSerializerOptions{ PropertyNameCaseInsensitive = true,
-        AllowOutOfOrderMetadataProperties = true 
+        AllowOutOfOrderMetadataProperties = true // .NET 8.0 de yok, üzeri sürümlerde kullanılabilir. jsonumuzda type ilk sırada değilse hata veriyor. Bu yüzden ekledim.
     };
 
-    var priceData = JsonSerializer.Deserialize<PriceData>(File.ReadAllText(pricesPath), options);
+    var priceData = JsonSerializer.Deserialize<PriceData>(File.ReadAllText(pricesPath), options); // json to object
     var ruleSet = JsonSerializer.Deserialize<RuleSet>(File.ReadAllText(rulesPath), options);
 
     if (priceData?.Prices == null || ruleSet?.Rules == null)
