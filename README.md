@@ -92,6 +92,10 @@ Terminal veya komut satırınızı açın ve projeyi bilgisayarınıza indirin:
 ```bash 
 git clone https://github.com/betulkaragoz/ElectricityPriceAlert.git
 ```
+Klasöre Gidin:
+```bash 
+cd ElectricityPriceAlert
+```
 
 Projeyi çalıştırmak için:
 ```bash 
