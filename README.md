@@ -56,7 +56,7 @@ Ancak, sistemin bir borsa eşleştirme motoru olsaydı ve milisaniyelik gecikmel
 
 Projede kuralları yazdıktan sonra derlemeye karar verdim ve sürekli ekranda *"Price is outside the comfortable trading zone."* mesajını gördüğümü fark ettim. Kurallarımı incelediğimde bir anormallik görmedim ve `NotRule` kuralını incelediğimde; içteki `RangeRule` kuralı şartnamede belirlenen bandın dışındakileri doğru (true) kabul edeceği için bu şekilde kodlamıştım. 
 
-Daha sonra bu kural bir `NotRule` ile sarmalandığında, tersine çevirme mantığından dolayı aslında bandın "içindekileri" doğru kabul etmemiz ve mesajı ekrana yazdırmamız gerekiyordu. Bu durumu, piyasanın olağan dışı durgunlaştığı (fiyatın bant içinde sıkıştığı) senaryoları yakalamak adına sistemin beklenen ve doğru bir davranışı olarak yorumladım.
+Daha sonra bu kural bir `NotRule` ile sarmalandığında, tersine çevirme mantığından dolayı aslında bandın "içindekileri" doğru kabul etmemiz ve mesajı ekrana yazdırmamız gerekiyordu. Bu durum biraz kafamı karıştırsa da standart fiyatlarla trading'in kar getirmeyeceğini düşünerek bu modeli kabul ettim. Umarım doğru bir karar vermiştimdir çünkü mantık olarak olması gerekenin bu senaryo olduğunu düşünüyorum.
 
 ## Projenin Kurulumu ve Kullanımı
 
@@ -64,13 +64,16 @@ Bilgisayarınızda projede herhangi bir sorun yaşamamak adına **.NET 10** kuru
 Eğer yüklü değilse [Microsoft .NET İndirme Sayfası](https://dotnet.microsoft.com/download) üzerinden işletim sisteminize uygun SDK'yı kurabilirsiniz.
 
 Terminal veya komut satırınızı açın ve projeyi bilgisayarınıza indirin:
-```bash
+```bash 
 git clone [https://github.com/betulkaragoz/ElectricityPriceAlert.git](https://github.com/betulkaragoz/ElectricityPriceAlert.git)
+```
 
 Projeyi çalıştırmak için:
-
+```bash 
 dotnet run --project PriceConsole -- data_prices.json rules_rules.json
+```
 
 Testleri çalıştırmak için:
-
+```bash 
 dotnet test
+```
